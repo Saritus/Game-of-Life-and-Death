@@ -3,6 +3,7 @@ function AI(player) {
   this.player = player;
 
   this.getMove = function(field) {
+    var start = new Date().getTime();
     var move = [];
     var best_ratio;
     var new_field;
@@ -11,15 +12,12 @@ function AI(player) {
       for (var y = 0; y < field.rows; y++) {
         new_field = field.clone();
 
-        new_field.cells[0][0].type = 3;
-
         if (!new_field.click(this.player, x, y)) {
           continue;
         }
-        new_field.setNeighbors();
-        new_field.step();
 
         var new_ratio = new_field.getRatio();
+
 
         if ((!best_ratio) ||
           (player == 1 && new_ratio > best_ratio) ||
@@ -30,7 +28,9 @@ function AI(player) {
         }
       }
     }
-
+    console.log("best_ratio", best_ratio);
+    var end = new Date().getTime();
+    console.log("Time: ", end - start);
     return move;
   }
 }

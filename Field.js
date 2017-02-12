@@ -33,80 +33,80 @@ function Field(rows, cols, w) {
         var typeone = 0;
         var typetwo = 0;
         // Oben
-        if (x > 0 && cells[x - 1][y].type) {
+        if (x > 0 && this.cells[x - 1][y].type) {
           count++;
-          if (cells[x - 1][y].type == 1) {
+          if (this.cells[x - 1][y].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Unten
-        if (x < this.rows - 1 && cells[x + 1][y].type) {
+        if (x < this.rows - 1 && this.cells[x + 1][y].type) {
           count++;
-          if (cells[x + 1][y].type == 1) {
+          if (this.cells[x + 1][y].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Links
-        if (y > 0 && cells[x][y - 1].type) {
+        if (y > 0 && this.cells[x][y - 1].type) {
           count++;
-          if (cells[x][y - 1].type == 1) {
+          if (this.cells[x][y - 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Rechts
-        if (y < this.cols - 1 && cells[x][y + 1].type) {
+        if (y < this.cols - 1 && this.cells[x][y + 1].type) {
           count++;
-          if (cells[x][y + 1].type == 1) {
+          if (this.cells[x][y + 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Oben links
-        if (x > 0 && y > 0 && cells[x - 1][y - 1].type) {
+        if (x > 0 && y > 0 && this.cells[x - 1][y - 1].type) {
           count++;
-          if (cells[x - 1][y - 1].type == 1) {
+          if (this.cells[x - 1][y - 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Oben rechts
-        if (x > 0 && y < this.cols - 1 && cells[x - 1][y + 1].type) {
+        if (x > 0 && y < this.cols - 1 && this.cells[x - 1][y + 1].type) {
           count++;
-          if (cells[x - 1][y + 1].type == 1) {
+          if (this.cells[x - 1][y + 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Unten links
-        if (x < this.rows - 1 && y > 0 && cells[x + 1][y - 1].type) {
+        if (x < this.rows - 1 && y > 0 && this.cells[x + 1][y - 1].type) {
           count++;
-          if (cells[x + 1][y - 1].type == 1) {
+          if (this.cells[x + 1][y - 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
         // Unten rechts
-        if (x < this.rows - 1 && y < this.cols - 1 && cells[x + 1][y + 1].type) {
+        if (x < this.rows - 1 && y < this.cols - 1 && this.cells[x + 1][y + 1].type) {
           count++;
-          if (cells[x + 1][y + 1].type == 1) {
+          if (this.cells[x + 1][y + 1].type == 1) {
             typeone++;
           } else {
             typetwo++;
           }
         }
-        cells[x][y].neighborCount = count;
-        cells[x][y].neighborTypeOne = typeone;
-        cells[x][y].neighborTypeTwo = typetwo;
+        this.cells[x][y].neighborCount = count;
+        this.cells[x][y].neighborTypeOne = typeone;
+        this.cells[x][y].neighborTypeTwo = typetwo;
       }
     }
   }

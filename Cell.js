@@ -9,21 +9,12 @@ function Cell(x, y, w) {
   this.neighborTypeTwo = 0;
 
   this.draw = function() {
-    switch (this.type) {
-      case 0:
-        fill(255);
-        break;
-      case 1:
-        fill(255, 0, 0);
-        break;
-      case 2:
-        fill(0, 0, 255);
-        break;
-      default:
-        fill(0, 255, 0);
-    }
-
+    stroke(0);
+    this.setTypeColor(this.type);
     rect(this.x * this.w, this.y * this.w, this.w, this.w);
+    noStroke();
+    this.setTypeColor(this.getNextStep());
+    rect(this.x * this.w + this.w / 8 * 3, this.y * this.w + this.w / 8 * 3, this.w / 4, this.w / 4);
   }
 
   this.getNextStep = function() {
@@ -36,7 +27,7 @@ function Cell(x, y, w) {
         return this.type;
       }
     } else {
-      if (neighborCount == 3) {
+      if (this.neighborCount == 3) {
         if (this.neighborTypeOne > this.neighborTypeTwo) {
           return 1;
         } else {
@@ -45,6 +36,22 @@ function Cell(x, y, w) {
       } else {
         return 0;
       }
+    }
+  }
+
+  this.setTypeColor = function(type) {
+    switch (type) {
+      case 0:
+        fill(255);
+        break;
+      case 1:
+        fill(255, 0, 0);
+        break;
+      case 2:
+        fill(0, 0, 255);
+        break;
+      default:
+        fill(0, 255, 0);
     }
   }
 }

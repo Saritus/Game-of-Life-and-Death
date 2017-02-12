@@ -17,6 +17,10 @@ function Cell(x, y, w) {
     rect(this.x * this.w + this.w / 8 * 3, this.y * this.w + this.w / 8 * 3, this.w / 4, this.w / 4);
   }
 
+  this.step = function() {
+    this.type = this.getNextStep();
+  }
+
   this.getNextStep = function() {
     if (this.type) {
       if (this.neighborCount < 2) {

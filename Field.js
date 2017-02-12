@@ -135,4 +135,15 @@ function Field(rows, cols, w) {
     }
     return typeone / typetwo;
   }
+
+  this.clone = function() {
+    var new_cells = [];
+    for (var x = 0; x < this.cols; x++) {
+      new_cells[x] = [];
+      for (var y = 0; y < this.rows; y++) {
+        new_cells[x][y] = this.cells[x][y].clone();
+      }
+    }
+    return new Field(this.rows, this.cols, this.w, new_cells);
+  }
 }

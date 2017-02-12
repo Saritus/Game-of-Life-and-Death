@@ -58,4 +58,9 @@ function Cell(x, y, w) {
         fill(0, 255, 0);
     }
   }
+
+  this.clone = function() {
+    var newCell = new Cell(JSON.parse(JSON.stringify(this.x)), JSON.parse(JSON.stringify(this.y)), JSON.parse(JSON.stringify(this.w)), JSON.parse(JSON.stringify(this.type)));
+    return newCell;
+  }
 }

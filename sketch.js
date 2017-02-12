@@ -1,10 +1,10 @@
 var cols;
 var rows;
 var field;
+var w = 30;
 
 function setup() {
   createCanvas(601, 601);
-  var w = 30;
   cols = floor(width / w);
   rows = floor(height / w);
 

@@ -76,15 +76,15 @@ function execute_ai(p) {
 }
 
 function mouseClicked() {
+
+  // Spieler
+  if (!player) {
+    return; // Wrong player
+  }
+
+  var x = floor(mouseX / w);
+  var y = floor(mouseY / w);
   if (!move) {
-    // Spieler
-    if (!player) {
-      return; // Wrong player
-    }
-
-    var x = floor(mouseX / w);
-    var y = floor(mouseY / w);
-
     if ((!field.cells[x]) || (!field.cells[x][y])) {
       return; // Click out of window
     }
@@ -96,6 +96,9 @@ function mouseClicked() {
     if (!field.click(player, x, y)) {
       return; // Clicked on empty cell
     }
+  } else if (x == moveX && y == moveY) {
+    field.click(player, x, y);
+    move = false;
   }
 }
 

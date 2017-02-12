@@ -384,13 +384,15 @@ function Field(rows, cols, w, cells) {
   }
 
   this.click = function(player, x, y) {
+    var oldtype = this.cells[x][y].type;
     if (this.cells[x][y].type) {
       this.cells[x][y].type = 0;
     } else {
       this.cells[x][y].type = player;
       //return 0;
     }
-    this.setNeighbors();
+
+    this.changeNeighbors(x, y, oldtype, this.cells[x][y].type);
     this.step();
     return 1;
   }

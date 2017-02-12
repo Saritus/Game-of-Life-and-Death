@@ -1,4 +1,4 @@
-function Cell(x, y, w, type) {
+function Cell(x, y, w, type, count, one, two) {
   this.x = x;
   this.y = y;
   this.w = w;
@@ -17,9 +17,9 @@ function Cell(x, y, w, type) {
     }
   }
 
-  this.neighborCount = 0;
-  this.neighborTypeOne = 0;
-  this.neighborTypeTwo = 0;
+  this.neighborCount = count || 0;
+  this.neighborTypeOne = one || 0;
+  this.neighborTypeTwo = two || 0;
 
   this.draw = function() {
     stroke(0);
@@ -73,7 +73,7 @@ function Cell(x, y, w, type) {
   }
 
   this.clone = function() {
-    var newCell = new Cell(JSON.parse(JSON.stringify(this.x)), JSON.parse(JSON.stringify(this.y)), JSON.parse(JSON.stringify(this.w)), JSON.parse(JSON.stringify(this.type)));
+    var newCell = new Cell(this.x, this.y, this.w, this.type, this.neighborCount, this.neighborTypeOne, this.neighborTypeTwo);
     return newCell;
   }
 }

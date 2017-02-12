@@ -1,7 +1,7 @@
 var cols;
 var rows;
 var field;
-var w = 25;
+var w = 60;
 var player = 1;
 var player_output;
 var ai_move;
@@ -66,6 +66,7 @@ function draw() {
 
   if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
     noLoop();
+    console.log(field.getTypeOne(), field.getTypeTwo());
     if (checkAutorestart.checked()) {
       restart();
     }
@@ -74,16 +75,22 @@ function draw() {
 
 function execute_ai(p) {
   // AI
-  var ai = new AI(p);
+  var ai;
+  if (p == 1) {
+    ai = new AI(p);
+  }
+  if (p == 2) {
+    ai = new AI_basic(p);
+  }
   ai_move = ai.getMove(field);
-  console.log("Move: ", ai_move['x'], ai_move['y']);
+  //console.log("Move: ", ai_move['x'], ai_move['y']);
   field.click(p, ai_move['x'], ai_move['y']);
   move = true;
   finishmove();
-  console.log("Player: ", player);
-  console.log("Ratio: ", field.getRatio());
-  console.log("One, Two: ", field.getTypeOne(), field.getTypeTwo());
-  console.log("- - - - - - - - - -");
+  //console.log("Player: ", player);
+  //console.log("Ratio: ", field.getRatio());
+  //console.log("One, Two: ", field.getTypeOne(), field.getTypeTwo());
+  //console.log("- - - - - - - - - -");
 }
 
 function mouseClicked() {

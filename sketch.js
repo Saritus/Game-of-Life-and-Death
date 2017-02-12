@@ -54,7 +54,7 @@ function draw() {
 
   field.setNeighbors();
   field.draw();
-  player_output.html("Next turn: Player " + player);
+  player_output.html("<font color=\"" + playercolor() + "\">Next turn: Player " + player + "</font>");
 
   if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
     noLoop();
@@ -124,5 +124,13 @@ function undomove() {
   if (move) {
     field.click(player, moveX, moveY);
     move = false;
+  }
+}
+
+function playercolor() {
+  if (player == 1) {
+    return "red";
+  } else {
+    return "blue";
   }
 }

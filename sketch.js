@@ -1,7 +1,7 @@
 var cols;
 var rows;
 var field;
-var w = 30;
+var w = 60;
 var player = 1;
 var player_output;
 
@@ -15,6 +15,7 @@ function setup() {
 
   field = new Field(rows, cols, w);
   field.setNeighbors();
+  noLoop();
 }
 
 function draw() {
@@ -44,4 +45,13 @@ function mouseClicked() {
     player = 1;
   }
   player_output.html("Spieler " + player + " ist am Zug");
+  redraw();
+}
+
+function wait(ms) {
+  var start = new Date().getTime();
+  var end = start;
+  while (end < start + ms) {
+    end = new Date().getTime();
+  }
 }

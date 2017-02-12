@@ -1,10 +1,10 @@
 var cols;
 var rows;
 var field;
-var w = 20;
+var w = 30;
 var player = 1;
 var player_output;
-var ai;
+var ai_move;
 var isPlayerOneAi = false;
 var checkOneAi;
 var isPlayerTwoAi = false;
@@ -31,57 +31,64 @@ function setup() {
   field = new Field(rows, cols, w);
   field.setNeighbors();
 
-  ai = new AI(2);
-
-  noLoop();
+  frameRate(1);
 }
 
 function draw() {
   background(0);
+
+  if ((player == 1 && isPlayerOneAi) || (player == 2 && isPlayerTwoAi)) {
+    execute_ai(player);
+  }
+
+  field.setNeighbors();
   field.draw();
+  player_output.html("Spieler " + player + " ist am Zug");
+
+  if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
+    noLoop();
+  }
+}
+
+function execute_ai(p) {
+  // AI
+  var ai = new AI(p);
+  var move = ai.getMove(field);
+  console.log("Move: ", move['x'], move['y']);
+  field.click(player, move['x'], move['y']);
+  console.log("Ratio: ", field.getRatio());
+  console.log("One, Two: ", field.getTypeOne(), field.getTypeTwo());
+  console.log("- - - - - - - - - -");
+  if (player == 1) {
+    player = 2;
+  } else {
+    player = 1;
+  }
 }
 
 function mouseClicked() {
 
   // Spieler
+  if (!player) {
+    return; // Wrong player
+  }
 
   var x = floor(mouseX / w);
   var y = floor(mouseY / w);
 
-  if (!field.cells[x][y]) {
-    return;
+  if ((!field.cells[x]) || (!field.cells[x][y])) {
+    return; // Click out of window
   }
 
   if (!field.click(player, x, y)) {
-    return;
+    return; // Clicked on empty cell
   }
-
-  field.setNeighbors();
-  field.step();
-  field.setNeighbors();
 
   if (player == 1) {
     player = 2;
   } else {
     player = 1;
   }
-  player_output.html("Spieler " + player + " ist am Zug");
-  redraw();
-
-  // AI
-  var move = ai.getMove(field);
-  field.click(player, move['x'], move['y']);
-  field.setNeighbors();
-  field.step();
-  field.setNeighbors();
-
-  if (player == 1) {
-    player = 2;
-  } else {
-    player = 1;
-  }
-  player_output.html("Spieler " + player + " ist am Zug");
-  redraw();
 }
 
 function wait(ms) {

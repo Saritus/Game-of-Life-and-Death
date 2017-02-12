@@ -1,12 +1,16 @@
-function Field(rows, cols, w) {
+function Field(rows, cols, w, cells) {
   this.rows = rows;
   this.cols = cols;
-  this.cells = [];
 
-  for (var x = 0; x < this.cols; x++) {
-    this.cells[x] = [];
-    for (var y = 0; y < this.rows; y++) {
-      this.cells[x][y] = new Cell(x, y, w);
+  if (cells) {
+    this.cells = cells;
+  } else {
+    this.cells = [];
+    for (var x = 0; x < this.cols; x++) {
+      this.cells[x] = [];
+      for (var y = 0; y < this.rows; y++) {
+        this.cells[x][y] = new Cell(x, y, w);
+      }
     }
   }
 

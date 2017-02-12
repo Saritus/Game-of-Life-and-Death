@@ -393,7 +393,6 @@ function Field(rows, cols, w, cells) {
     }
 
     this.changeNeighbors(x, y, oldtype, this.cells[x][y].type);
-    this.step();
     return 1;
   }
 

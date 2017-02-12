@@ -15,6 +15,7 @@ function AI(player) {
         if (!new_field.click(this.player, x, y)) {
           continue;
         }
+        new_field.step();
 
         var new_ratio = new_field.getRatio();
 

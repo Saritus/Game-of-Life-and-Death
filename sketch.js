@@ -5,6 +5,10 @@ var w = 20;
 var player = 1;
 var player_output;
 var ai;
+var isPlayerOneAi = false;
+var checkOneAi;
+var isPlayerTwoAi = false;
+var checkTwoAi;
 
 function setup() {
   createCanvas(601, 601);
@@ -13,6 +17,16 @@ function setup() {
 
   player_output = createP();
   player_output.html("Spieler " + player + " ist am Zug");
+
+  checkOneAi = createCheckbox('Player 1 is AI', false);
+  checkOneAi.changed(function() {
+    isPlayerOneAi = !isPlayerOneAi
+  });
+
+  checkTwoAi = createCheckbox('Player 2 is AI', false);
+  checkTwoAi.changed(function() {
+    isPlayerTwoAi = !isPlayerTwoAi
+  });
 
   field = new Field(rows, cols, w);
   field.setNeighbors();

@@ -123,6 +123,29 @@ function Field(rows, cols, w, cells) {
       //field.cells[x][y].type = player;
       return 0;
     }
+
+  this.getTypeOne = function() {
+    var typeone = 0;
+    for (var x = 0; x < this.cols; x++) {
+      for (var y = 0; y < this.rows; y++) {
+        if (this.cells[x][y].type == 1) {
+          typeone++;
+        }
+      }
+    }
+    return typeone;
+  }
+
+  this.getTypeTwo = function() {
+    var typetwo = 0;
+    for (var x = 0; x < this.cols; x++) {
+      for (var y = 0; y < this.rows; y++) {
+        if (this.cells[x][y].type == 2) {
+          typetwo++;
+        }
+      }
+    }
+    return typetwo;
   }
 
   this.getRatio = function() {

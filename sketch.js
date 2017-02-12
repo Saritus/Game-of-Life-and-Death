@@ -16,6 +16,7 @@ var checkAutorestart;
 var moveX;
 var moveY;
 var move = false;
+var oldplayer;
 
 function setup() {
   createCanvas(601, 601);
@@ -107,8 +108,7 @@ function mouseClicked() {
       return; // Clicked on empty cell
     }
   } else if (x == moveX && y == moveY) {
-    field.click(player, x, y);
-    move = false;
+    undomove();
   }
 }
 
@@ -135,7 +135,7 @@ function finishmove() {
 
 function undomove() {
   if (move) {
-    field.click(player, moveX, moveY);
+    field.click(oldplayer, moveX, moveY);
     move = false;
   }
 }

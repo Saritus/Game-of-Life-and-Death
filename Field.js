@@ -386,6 +386,7 @@ function Field(rows, cols, w, cells) {
   this.click = function(player, x, y) {
     var oldtype = this.cells[x][y].type;
     if (this.cells[x][y].type) {
+      oldplayer = this.cells[x][y].type;
       this.cells[x][y].type = 0;
     } else {
       this.cells[x][y].type = player;

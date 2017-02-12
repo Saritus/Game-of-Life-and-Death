@@ -28,8 +28,38 @@ function Field(rows, cols, w) {
 
   this.getNeighbors = function(x, y) {
     var count = 0;
-    if (x > 0 && cells[x - 1][y])
+    // Oben
+    if (x > 0 && cells[x - 1][y]) {
       count++;
+    }
+    // Unten
+    if (x < this.rows - 1 && cells[x + 1][y]) {
+      count++;
+    }
+    // Links
+    if (y > 0 && cells[x][y - 1]) {
+      count++;
+    }
+    // Rechts
+    if (y < this.cols - 1 && cells[x][y + 1]) {
+      count++;
+    }
+    // Oben links
+    if (x > 0 && y > 0 && cells[x - 1][y - 1]) {
+      count++;
+    }
+    // Oben rechts
+    if (x > 0 && y < this.cols - 1 && cells[x - 1][y + 1]) {
+      count++;
+    }
+    // Unten links
+    if (x < this.rows - 1 && y > 0 && cells[x + 1][y - 1]) {
+      count++;
+    }
+    // Unten rechts
+    if (x < this.rows - 1 && y < this.cols - 1 && cells[x + 1][y + 1]) {
+      count++;
+    }
     return count;
   }
 

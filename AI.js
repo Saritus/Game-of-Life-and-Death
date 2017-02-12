@@ -28,9 +28,9 @@ function AI(player) {
         }
       }
     }
-    console.log("best_ratio", best_ratio);
+    //console.log("best_ratio", best_ratio);
     var end = new Date().getTime();
-    console.log("Time: ", end - start);
+    //console.log("Time: ", end - start);
     return move;
   }
 }

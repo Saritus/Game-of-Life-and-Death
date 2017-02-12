@@ -20,33 +20,41 @@ function AI(player) {
         new_field.step();
         var new_ratio = new_field.getRatio();
 
-        for (var x1 = 0; x1 < field.cols; x1++) {
-          for (var y1 = 0; y1 < field.rows; y1++) {
+        innerloop:
+          for (var x1 = 0; x1 < field.cols; x1++) {
+            for (var y1 = 0; y1 < field.rows; y1++) {
 
-            var other_field = new_field.clone();
-            var other_player;
-            if (this.player == 1) {
-              other_player = 2;
-            } else {
-              other_player = 1;
-            }
+              var other_field = new_field.clone();
+              var other_player;
+              if (this.player == 1) {
+                other_player = 2;
+              } else {
+                other_player = 1;
+              }
 
-            if (!other_field.click(other_player, x1, y1)) {
-              continue;
-            }
-            other_field.setNeighbors();
-            other_field.step();
-            var other_ratio = other_field.getRatio();
+              if (!other_field.click(other_player, x1, y1)) {
+                continue;
+              }
+              other_field.setNeighbors();
+              other_field.step();
+              var other_ratio = other_field.getRatio();
 
-            if ((!best_ratio) ||
-              (other_player == 1 && other_ratio > best_ratio) ||
-              (other_player == 2 && other_ratio < best_ratio)) {
-              best_ratio = other_ratio;
-              //move['x'] = x;
-              //move['y'] = y;
+              if ((!best_ratio) ||
+                (other_player == 1 && other_ratio > best_ratio) ||
+                (other_player == 2 && other_ratio < best_ratio)) {
+                best_ratio = other_ratio;
+                //move['x'] = x;
+                //move['y'] = y;
+              }
+
+              if ((worst_ratio) && (
+                  (this.player == 1 && best_ratio < worst_ratio) ||
+                  (this.player == 2 && best_ratio > worst_ratio)
+                )) {
+                break innerloop;
+              }
             }
           }
-        }
 
         if ((!worst_ratio) ||
           (this.player == 1 && best_ratio > worst_ratio) ||

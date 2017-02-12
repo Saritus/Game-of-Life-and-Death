@@ -120,4 +120,19 @@ function Field(rows, cols, w) {
       return 0;
     }
   }
+
+  this.getRatio = function() {
+    var typeone = 0;
+    var typetwo = 0;
+    for (var x = 0; x < this.cols; x++) {
+      for (var y = 0; y < this.rows; y++) {
+        if (this.cells[x][y].type == 1) {
+          typeone++;
+        } else if (this.cells[x][y].type == 2) {
+          typetwo++;
+        }
+      }
+    }
+    return typeone / typetwo;
+  }
 }

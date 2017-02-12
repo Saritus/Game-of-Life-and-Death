@@ -110,4 +110,14 @@ function Field(rows, cols, w) {
       }
     }
   }
+
+  this.click = function(player, x, y) {
+    if (field.cells[x][y].type) {
+      field.cells[x][y].type = 0;
+      return 1;
+    } else {
+      //field.cells[x][y].type = player;
+      return 0;
+    }
+  }
 }

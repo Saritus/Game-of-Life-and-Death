@@ -30,11 +30,8 @@ function mouseClicked() {
     return;
   }
 
-  if (field.cells[x][y].type) {
-    field.cells[x][y].type = 0;
-  } else {
+  if (!field.click(player, x, y)) {
     return;
-    field.cells[x][y].type = player;
   }
 
   field.setNeighbors();

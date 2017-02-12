@@ -30,7 +30,7 @@ function Field(rows, cols, w, cells) {
     }
   }
 
-  this.setNeighbors = function() {
+  this.setNeighborsAlternativ = function() {
     for (var x = 0; x < this.cols; x++) {
       for (var y = 0; y < this.rows; y++) {
         var count = 0;
@@ -115,7 +115,7 @@ function Field(rows, cols, w, cells) {
     }
   }
 
-  this.setNeighborsAlternativ = function() {
+  this.setNeighbors = function() {
     for (var x = 0; x < this.cols; x++) {
       for (var y = 0; y < this.rows; y++) {
         this.cells[x][y].neighborCount = 0;
@@ -218,8 +218,8 @@ function Field(rows, cols, w, cells) {
     if (this.cells[x][y].type) {
       this.cells[x][y].type = 0;
     } else {
-      //field.cells[x][y].type = player;
-      return 0;
+      this.cells[x][y].type = player;
+      //return 0;
     }
     this.setNeighbors();
     this.step();

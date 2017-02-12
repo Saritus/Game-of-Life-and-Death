@@ -115,6 +115,105 @@ function Field(rows, cols, w, cells) {
     }
   }
 
+  this.setNeighborsAlternativ = function() {
+    for (var x = 0; x < this.cols; x++) {
+      for (var y = 0; y < this.rows; y++) {
+        this.cells[x][y].neighborCount = 0;
+        this.cells[x][y].neighborTypeOne = 0;
+        this.cells[x][y].neighborTypeTwo = 0;
+      }
+    }
+
+    for (var x = 0; x < this.cols; x++) {
+      for (var y = 0; y < this.rows; y++) {
+        if (this.cells[x][y].type) {
+
+          // x-1
+          if (x > 0) {
+            this.cells[x - 1][y].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x - 1][y].neighborTypeOne++;
+            } else {
+              this.cells[x - 1][y].neighborTypeTwo++;
+            }
+          }
+
+          // x+1
+          if (x < this.cols - 1) {
+            this.cells[x + 1][y].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x + 1][y].neighborTypeOne++;
+            } else {
+              this.cells[x + 1][y].neighborTypeTwo++;
+            }
+          }
+
+          // y-1
+          if (y > 0) {
+            this.cells[x][y - 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x][y - 1].neighborTypeOne++;
+            } else {
+              this.cells[x][y - 1].neighborTypeTwo++;
+            }
+          }
+
+          // y+1
+          if (y < this.rows - 1) {
+            this.cells[x][y + 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x][y + 1].neighborTypeOne++;
+            } else {
+              this.cells[x][y + 1].neighborTypeTwo++;
+            }
+          }
+
+          // x-1 y-1
+          if (x > 0 && y > 0) {
+            this.cells[x - 1][y - 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x - 1][y - 1].neighborTypeOne++;
+            } else {
+              this.cells[x - 1][y - 1].neighborTypeTwo++;
+            }
+          }
+
+          // x+1 y-1
+          if (x < this.cols - 1 && y > 0) {
+            this.cells[x + 1][y - 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x + 1][y - 1].neighborTypeOne++;
+            } else {
+              this.cells[x + 1][y - 1].neighborTypeTwo++;
+            }
+          }
+
+          // x-1 y+1
+          if (x > 0 && y < this.rows - 1) {
+            this.cells[x - 1][y + 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x - 1][y + 1].neighborTypeOne++;
+            } else {
+              this.cells[x - 1][y + 1].neighborTypeTwo++;
+            }
+          }
+
+          // x+1 y+1
+          if (x < this.cols - 1 && y < this.rows - 1) {
+            this.cells[x + 1][y + 1].neighborCount++;
+            if (this.cells[x][y].type == 1) {
+              this.cells[x + 1][y + 1].neighborTypeOne++;
+            } else {
+              this.cells[x + 1][y + 1].neighborTypeTwo++;
+            }
+          }
+
+        }
+      }
+    }
+
+  }
+
   this.click = function(player, x, y) {
     if (this.cells[x][y].type) {
       this.cells[x][y].type = 0;

@@ -66,6 +66,7 @@ function draw() {
 
   if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
     noLoop();
+    console.log(field.getTypeOne(), field.getTypeTwo());
     if (checkAutorestart.checked()) {
       restart();
     }

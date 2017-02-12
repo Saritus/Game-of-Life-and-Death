@@ -18,10 +18,9 @@ function AI(player) {
 
         var new_ratio = new_field.getRatio();
 
-
         if ((!best_ratio) ||
-          (player == 1 && new_ratio > best_ratio) ||
-          (player == 2 && new_ratio < best_ratio)) {
+          (this.player == 1 && new_ratio > best_ratio) ||
+          (this.player == 2 && new_ratio < best_ratio)) {
           best_ratio = new_ratio;
           move['x'] = x;
           move['y'] = y;

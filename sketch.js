@@ -1,7 +1,7 @@
 var cols;
 var rows;
 var field;
-var w = 40;
+var w = 60;
 var player = 1;
 var player_output;
 var ai_move;

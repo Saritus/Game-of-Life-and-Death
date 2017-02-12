@@ -16,7 +16,7 @@ function setup() {
   rows = floor(height / w);
 
   player_output = createP();
-  player_output.html("Spieler " + player + " ist am Zug");
+  player_output.html("Next turn: Player " + player);
 
   checkOneAi = createCheckbox('Player 1 is AI', false);
   checkOneAi.changed(function() {
@@ -31,7 +31,7 @@ function setup() {
   field = new Field(rows, cols, w);
   field.setNeighbors();
 
-  frameRate(1);
+  //frameRate(3);
 }
 
 function draw() {
@@ -43,7 +43,7 @@ function draw() {
 
   field.setNeighbors();
   field.draw();
-  player_output.html("Spieler " + player + " ist am Zug");
+  player_output.html("Next turn: Player " + player);
 
   if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
     noLoop();
@@ -55,7 +55,7 @@ function execute_ai(p) {
   var ai = new AI(p);
   var move = ai.getMove(field);
   console.log("Move: ", move['x'], move['y']);
-  field.click(player, move['x'], move['y']);
+  field.click(p, move['x'], move['y']);
   console.log("Ratio: ", field.getRatio());
   console.log("One, Two: ", field.getTypeOne(), field.getTypeTwo());
   console.log("- - - - - - - - - -");

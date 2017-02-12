@@ -1,9 +1,10 @@
 var cols;
 var rows;
 var field;
-var w = 60;
+var w = 20;
 var player = 1;
 var player_output;
+var ai;
 
 function setup() {
   createCanvas(601, 601);
@@ -15,6 +16,9 @@ function setup() {
 
   field = new Field(rows, cols, w);
   field.setNeighbors();
+
+  ai = new AI(2);
+
   noLoop();
 }
 
@@ -24,6 +28,9 @@ function draw() {
 }
 
 function mouseClicked() {
+
+  // Spieler
+
   var x = floor(mouseX / w);
   var y = floor(mouseY / w);
 
@@ -35,6 +42,21 @@ function mouseClicked() {
     return;
   }
 
+  field.setNeighbors();
+  field.step();
+  field.setNeighbors();
+
+  if (player == 1) {
+    player = 2;
+  } else {
+    player = 1;
+  }
+  player_output.html("Spieler " + player + " ist am Zug");
+  redraw();
+
+  // AI
+  var move = ai.getMove(field);
+  field.click(player, move['x'], move['y']);
   field.setNeighbors();
   field.step();
   field.setNeighbors();

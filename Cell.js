@@ -5,7 +5,6 @@ function Cell(x, y, w) {
   this.type = floor(random(0, 3));
 
   this.draw = function() {
-    noStroke();
 
     switch (this.type) {
       case 0:
@@ -21,6 +20,6 @@ function Cell(x, y, w) {
         fill(0, 255, 0);
     }
 
-    rect(this.x * this.w + 1, this.y * this.w + 1, this.w - 1, this.w - 1);
+    rect(this.x * this.w, this.y * this.w, this.w, this.w);
   }
 }

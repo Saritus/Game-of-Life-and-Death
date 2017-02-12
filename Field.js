@@ -62,5 +62,4 @@ function Field(rows, cols, w) {
     }
     return count;
   }
-
 }

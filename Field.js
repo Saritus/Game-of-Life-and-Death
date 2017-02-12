@@ -118,11 +118,14 @@ function Field(rows, cols, w, cells) {
   this.click = function(player, x, y) {
     if (this.cells[x][y].type) {
       this.cells[x][y].type = 0;
-      return 1;
     } else {
       //field.cells[x][y].type = player;
       return 0;
     }
+    this.setNeighbors();
+    this.step();
+    return 1;
+  }
 
   this.getTypeOne = function() {
     var typeone = 0;

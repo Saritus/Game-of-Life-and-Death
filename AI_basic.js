@@ -30,7 +30,7 @@ function AI_basic(player) {
     }
     //console.log("best_ratio", best_ratio);
     var end = new Date().getTime();
-    console.log("Time: ", end - start);
+    //console.log("Time: ", end - start);
     return move;
   }
 }

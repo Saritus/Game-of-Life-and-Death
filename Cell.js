@@ -5,7 +5,16 @@ function Cell(x, y, w, type) {
   if (type) {
     this.type = type;
   } else {
-    this.type = floor(random(0, 3));
+    switch (floor(random(10))) {
+      case 0:
+        this.type = 1
+        break;
+      case 1:
+        this.type = 2;
+        break;
+      default:
+        this.type = 0;
+    }
   }
 
   this.neighborCount = 0;

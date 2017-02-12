@@ -1,8 +1,12 @@
-function Cell(x, y, w) {
+function Cell(x, y, w, type) {
   this.x = x;
   this.y = y;
   this.w = w;
-  this.type = floor(random(0, 3));
+  if (type) {
+    this.type = type;
+  } else {
+    this.type = floor(random(0, 3));
+  }
 
   this.neighborCount = 0;
   this.neighborTypeOne = 0;

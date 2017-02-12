@@ -1,7 +1,7 @@
 function Cell(x, y, w) {
     this.x = x;
     this.y = y;
-    this.w = 20;
+    this.w = w;
 
     this.draw = function() {
         noStroke();

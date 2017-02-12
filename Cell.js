@@ -9,7 +9,7 @@ function Cell(x, y, w) {
 
         switch (this.type) {
             case 0:
-                fill(0, 0, 0);
+                fill(255);
                 break;
             case 1:
                 fill(255, 0, 0);

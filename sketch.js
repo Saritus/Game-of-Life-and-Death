@@ -3,7 +3,7 @@ var rows;
 var field;
 
 function setup() {
-    createCanvas(600, 600);
+    createCanvas(601, 601);
     var w = 30;
     cols = floor(width / w);
     rows = floor(height / w);

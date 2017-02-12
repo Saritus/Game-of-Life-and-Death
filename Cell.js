@@ -4,6 +4,10 @@ function Cell(x, y, w) {
   this.w = w;
   this.type = floor(random(0, 3));
 
+  this.neighborCount = 0;
+  this.neighborTypeOne = 0;
+  this.neighborTypeTwo = 0;
+
   this.draw = function() {
 
     switch (this.type) {

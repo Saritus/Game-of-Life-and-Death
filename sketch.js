@@ -74,7 +74,13 @@ function draw() {
 
 function execute_ai(p) {
   // AI
-  var ai = new AI(p);
+  var ai;
+  if (p == 1) {
+    ai = new AI(p);
+  }
+  if (p == 2) {
+    ai = new AI_basic(p);
+  }
   ai_move = ai.getMove(field);
   //console.log("Move: ", ai_move['x'], ai_move['y']);
   field.click(p, ai_move['x'], ai_move['y']);

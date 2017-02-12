@@ -11,6 +11,8 @@ var isPlayerTwoAi = false;
 var checkTwoAi;
 var endbutton;
 var undobutton;
+var restartbutton;
+var checkAutorestart;
 var moveX;
 var moveY;
 var move = false;
@@ -39,6 +41,11 @@ function setup() {
     isPlayerTwoAi = !isPlayerTwoAi
   });
 
+  restartbutton = createButton('Restart');
+  restartbutton.mousePressed(restart);
+
+  checkAutorestart = createCheckbox('Autorestart', false);
+
   field = new Field(rows, cols, w);
   field.setNeighbors();
 
@@ -58,6 +65,9 @@ function draw() {
 
   if ((field.getTypeOne() == 0) || (field.getTypeTwo() == 0)) {
     noLoop();
+    if (checkAutorestart.checked()) {
+      restart();
+    }
   }
 }
 
@@ -128,6 +138,12 @@ function undomove() {
     field.click(player, moveX, moveY);
     move = false;
   }
+}
+
+function restart() {
+  field = new Field(rows, cols, w);
+  field.setNeighbors();
+  loop();
 }
 
 function playercolor() {

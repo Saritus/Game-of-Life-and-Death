@@ -2,7 +2,7 @@ function Cell(x, y, w, type) {
   this.x = x;
   this.y = y;
   this.w = w;
-  if (type) {
+  if (type != undefined) {
     this.type = type;
   } else {
     switch (floor(random(10))) {

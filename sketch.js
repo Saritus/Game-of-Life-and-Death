@@ -1,7 +1,7 @@
 var cols;
 var rows;
 var field;
-var w = 30;
+var w = 25;
 var player = 1;
 var player_output;
 var ai_move;
@@ -9,6 +9,11 @@ var isPlayerOneAi = false;
 var checkOneAi;
 var isPlayerTwoAi = false;
 var checkTwoAi;
+var endbutton;
+var undobutton;
+var moveX;
+var moveY;
+var move = false;
 
 function setup() {
   createCanvas(601, 601);
@@ -17,6 +22,12 @@ function setup() {
 
   player_output = createP();
   player_output.html("Next turn: Player " + player);
+
+  endbutton = createButton('Finish move');
+  endbutton.mousePressed(finishmove);
+
+  undobutton = createButton('Undo move');
+  undobutton.mousePressed(undomove);
 
   checkOneAi = createCheckbox('Player 1 is AI', false);
   checkOneAi.changed(function() {
@@ -31,13 +42,13 @@ function setup() {
   field = new Field(rows, cols, w);
   field.setNeighbors();
 
-  //frameRate(3);
+  frameRate(10);
 }
 
 function draw() {
   background(0);
 
-  if ((player == 1 && isPlayerOneAi) || (player == 2 && isPlayerTwoAi)) {
+  if ((!move) && ((player == 1 && isPlayerOneAi) || (player == 2 && isPlayerTwoAi))) {
     execute_ai(player);
   }
 
@@ -53,41 +64,38 @@ function draw() {
 function execute_ai(p) {
   // AI
   var ai = new AI(p);
-  var move = ai.getMove(field);
-  console.log("Move: ", move['x'], move['y']);
-  field.click(p, move['x'], move['y']);
+  ai_move = ai.getMove(field);
+  console.log("Move: ", ai_move['x'], ai_move['y']);
+  field.click(p, ai_move['x'], ai_move['y']);
+  move = true;
+  finishmove();
+  console.log("Player: ", player);
   console.log("Ratio: ", field.getRatio());
   console.log("One, Two: ", field.getTypeOne(), field.getTypeTwo());
   console.log("- - - - - - - - - -");
-  if (player == 1) {
-    player = 2;
-  } else {
-    player = 1;
-  }
 }
 
 function mouseClicked() {
+  if (!move) {
+    // Spieler
+    if (!player) {
+      return; // Wrong player
+    }
 
-  // Spieler
-  if (!player) {
-    return; // Wrong player
-  }
+    var x = floor(mouseX / w);
+    var y = floor(mouseY / w);
 
-  var x = floor(mouseX / w);
-  var y = floor(mouseY / w);
+    if ((!field.cells[x]) || (!field.cells[x][y])) {
+      return; // Click out of window
+    }
 
-  if ((!field.cells[x]) || (!field.cells[x][y])) {
-    return; // Click out of window
-  }
+    moveX = x;
+    moveY = y;
+    move = true;
 
-  if (!field.click(player, x, y)) {
-    return; // Clicked on empty cell
-  }
-
-  if (player == 1) {
-    player = 2;
-  } else {
-    player = 1;
+    if (!field.click(player, x, y)) {
+      return; // Clicked on empty cell
+    }
   }
 }
 
@@ -96,5 +104,25 @@ function wait(ms) {
   var end = start;
   while (end < start + ms) {
     end = new Date().getTime();
+  }
+}
+
+function finishmove() {
+  if (move) {
+    field.step();
+
+    if (player == 1) {
+      player = 2;
+    } else {
+      player = 1;
+    }
+    move = false;
+  }
+}
+
+function undomove() {
+  if (move) {
+    field.click(player, moveX, moveY);
+    move = false;
   }
 }

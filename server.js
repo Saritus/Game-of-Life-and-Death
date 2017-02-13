@@ -3,3 +3,5 @@ var express = require('express'),
   server = require('http').createServer(app),
   io = require('socket.io').listen(server),
   conf = require('./config.json');
+
+server.listen(conf.port);

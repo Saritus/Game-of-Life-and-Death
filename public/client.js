@@ -21,3 +21,16 @@ $(document).ready(function() {
     $('body').scrollTop($('body')[0].scrollHeight);
   });
 });
+
+function senden() {
+  // Eingabefelder auslesen
+  var name = $('#name').val();
+  var text = $('#text').val();
+  // Socket senden
+  socket.emit('chat', {
+    name: name,
+    text: text
+  });
+  // Text-Eingabe leeren
+  $('#text').val('');
+}

@@ -34,3 +34,12 @@ function senden() {
   // Text-Eingabe leeren
   $('#text').val('');
 }
+
+// bei einem Klick
+$('#senden').click(senden);
+// oder mit der Enter-Taste
+$('#text').keypress(function(e) {
+  if (e.which == 13) {
+    senden();
+  }
+});

@@ -137,6 +137,8 @@ function finishmove() {
       player = 1;
     }
     move = false;
+
+    senden("name", "text");
   }
 }
 

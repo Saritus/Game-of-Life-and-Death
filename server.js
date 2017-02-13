@@ -24,7 +24,8 @@ io.sockets.on('connection', function(socket) {
   // der Client ist verbunden
   socket.emit('chat', {
     zeit: new Date(),
-    text: 'Du bist nun mit dem Server verbunden!'
+    name: "_server_",
+    text: 'You are connected to the server!'
   });
   // wenn ein Benutzer einen Text senden
   socket.on('chat', function(data) {

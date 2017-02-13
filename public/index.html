@@ -2,22 +2,30 @@
 <html>
 
 <head>
-    <title>GOLAD</title>
+    <!--Title-->
+    <title>Game of Life and Death</title>
     <meta charset="utf-8">
-    <!--<link rel="stylesheet" href="style.css" />-->
+    <style>
+        body {
+            overflow: hidden;
+        }
+    </style>
+    <!--Server-client-->
     <script src="socket.io/socket.io.js"></script>
     <script src="jquery.min.js"></script>
     <script src="client.js"></script>
+    <!--p5-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.js"></script>
 </head>
 
 <body>
-    <header>GOLAD - The browser version</header>
-    <ul id="content"></ul>
-    <footer>
-        <input id="name" type="text" placeholder="dein Name" />
-        <input id="text" type="text" placeholder="schreibe etwas..." />
-        <input id="senden" type="submit" value="senden" />
-    </footer>
+    <!--GOLAD-->
+    <script language="javascript" type="text/javascript" src="Cell.js"></script>
+    <script language="javascript" type="text/javascript" src="Field.js"></script>
+    <script language="javascript" type="text/javascript" src="AI.js"></script>
+    <script language="javascript" type="text/javascript" src="AI_basic.js"></script>
+    <script language="javascript" type="text/javascript" src="sketch.js"></script>
 </body>
 
 </html>

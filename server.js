@@ -5,3 +5,8 @@ var express = require('express'),
   conf = require('./config.json');
 
 server.listen(conf.port);
+
+app.configure(function() {
+  // statische Dateien ausliefern
+  app.use(express.static(__dirname + '/public'));
+});

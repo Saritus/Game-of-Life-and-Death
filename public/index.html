@@ -2,20 +2,25 @@
 <html>
 
 <head>
-    <meta charset="UTF-8">
+    <!--Title-->
     <title>Game of Life and Death</title>
+    <meta charset="utf-8">
     <style>
         body {
             overflow: hidden;
         }
     </style>
+    <!--Server-client-->
+    <script src="socket.io/socket.io.js"></script>
+    <script src="jquery.min.js"></script>
+    <script src="client.js"></script>
+    <!--p5-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.js"></script>
 </head>
 
 <body>
-    <!--<script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>-->
-    <!--<script src="http://cs.stanford.edu/people/karpathy/convnetjs/build/convnet-min.js"></script>-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.7/addons/p5.dom.js"></script>
+    <!--GOLAD-->
     <script language="javascript" type="text/javascript" src="Cell.js"></script>
     <script language="javascript" type="text/javascript" src="Field.js"></script>
     <script language="javascript" type="text/javascript" src="AI.js"></script>

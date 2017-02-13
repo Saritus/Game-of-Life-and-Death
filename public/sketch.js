@@ -138,7 +138,7 @@ function finishmove() {
     }
     move = false;
 
-    senden("name", "text");
+    sendmove(moveX, moveY);
   }
 }
 
@@ -160,5 +160,16 @@ function playercolor() {
     return "red";
   } else {
     return "blue";
+  }
+}
+
+function receiveMove(x, y) {
+  field.click(player, x, y);
+  field.step();
+
+  if (player == 1) {
+    player = 2;
+  } else {
+    player = 1;
   }
 }

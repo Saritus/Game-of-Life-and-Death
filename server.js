@@ -35,6 +35,15 @@ io.sockets.on('connection', function(socket) {
       text: data.text
     });
   });
+  // wenn ein Benutzer einen Move sendet
+  socket.on('move', function(move) {
+    // so wird dieser Text an alle anderen Benutzer gesendet
+    io.sockets.emit('move', {
+      zeit: new Date(),
+      x: move.x,
+      y: move.y
+    });
+  });
 });
 
 // Portnummer in die Konsole schreiben

@@ -16,3 +16,20 @@ app.get('/', function(req, res) {
   // so wird die Datei index.html ausgegeben
   res.sendfile(__dirname + '/public/index.html');
 });
+
+io.sockets.on('connection', function(socket) {
+  // der Client ist verbunden
+  socket.emit('chat', {
+    zeit: new Date(),
+    text: 'Du bist nun mit dem Server verbunden!'
+  });
+  // wenn ein Benutzer einen Text senden
+  socket.on('chat', function(data) {
+    // so wird dieser Text an alle anderen Benutzer gesendet
+    io.sockets.emit('chat', {
+      zeit: new Date(),
+      name: data.name || 'Anonym',
+      text: data.text
+    });
+  });
+});

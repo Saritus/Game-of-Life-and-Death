@@ -1,0 +1,9 @@
+{
+	"name": "GOLAD",
+	"description": "A browser version of the GOLAD app",
+	"author": "Saritus",
+	"dependencies" : {
+		"express": "3.x",
+		"socket.io": "*"
+	}
+}

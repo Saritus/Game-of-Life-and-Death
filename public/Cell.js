@@ -5,9 +5,9 @@ function Cell(x, y, w, type, count, one, two) {
   if (type != undefined) {
     this.type = type;
   } else {
-    switch (floor(random(5))) {
+    switch (Math.floor(Math.random() * 5)) {
       case 0:
-        this.type = 1
+        this.type = 1;
         break;
       case 1:
         this.type = 2;

@@ -44,6 +44,9 @@ io.sockets.on('connection', function(socket) {
     name: "_server_",
     text: 'You are connected to the server!'
   });
+  socket.emit('field', {
+    field: field
+  });
   // wenn ein Benutzer einen Text senden
   socket.on('chat', function(data) {
     // so wird dieser Text an alle anderen Benutzer gesendet

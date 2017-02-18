@@ -1,3 +1,20 @@
+var field = {};
+field.types = [];
+for (var i = 0; i < 10; i++) {
+  for (var j = 0; j < 10; j++) {
+    switch (Math.floor(Math.random() * 5)) {
+      case 0:
+        field.types[i * 10 + j] = 1;
+        break;
+      case 1:
+        field.types[i * 10 + j] = 2;
+        break;
+      default:
+        field.types[i * 10 + j] = 0;
+    }
+  }
+}
+
 var express = require('express'),
   app = express(),
   server = require('http').createServer(app),

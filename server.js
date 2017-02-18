@@ -1,16 +1,16 @@
-var field = {};
-field.types = [];
+var types = [];
 for (var i = 0; i < 10; i++) {
+  types[i] = [];
   for (var j = 0; j < 10; j++) {
     switch (Math.floor(Math.random() * 5)) {
       case 0:
-        field.types[i * 10 + j] = 1;
+        types[i][j] = 1;
         break;
       case 1:
-        field.types[i * 10 + j] = 2;
+        types[i][j] = 2;
         break;
       default:
-        field.types[i * 10 + j] = 0;
+        types[i][j] = 0;
     }
   }
 }
@@ -45,7 +45,7 @@ io.sockets.on('connection', function(socket) {
     text: 'You are connected to the server!'
   });
   socket.emit('field', {
-    field: field
+    types: types
   });
   // wenn ein Benutzer einen Text senden
   socket.on('chat', function(data) {

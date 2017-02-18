@@ -20,7 +20,7 @@ $(document).ready(function() {
     //console.log(data.field);
     for (var i = 0; i < 10; i++) {
       for (var j = 0; j < 10; j++) {
-        field.cells[i][j].type = data.field.types[i * 10 + j];
+        field.cells[i][j].type = data.types[i][j];
       }
     }
     //field.setNeighbors();

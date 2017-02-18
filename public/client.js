@@ -1,7 +1,10 @@
 var senden;
 var sendmove;
+var field;
 
 $(document).ready(function() {
+  // Field
+  field = new Field(10, 10, w);
   // WebSocket
   var socket = io.connect();
   // neue Nachricht
@@ -12,6 +15,15 @@ $(document).ready(function() {
   socket.on('move', function(move) {
     console.log("Move", move.x, move.y);
     receiveMove(move.x, move.y);
+  });
+  socket.on('field', function(data) {
+    //console.log(data.field);
+    for (var i = 0; i < 10; i++) {
+      for (var j = 0; j < 10; j++) {
+        field.cells[i][j].type = data.types[i][j];
+      }
+    }
+    //field.setNeighbors();
   });
   // Nachricht senden
   senden = function(name, text) {

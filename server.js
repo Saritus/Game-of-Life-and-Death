@@ -1,3 +1,20 @@
+var types = [];
+for (var i = 0; i < 10; i++) {
+  types[i] = [];
+  for (var j = 0; j < 10; j++) {
+    switch (Math.floor(Math.random() * 5)) {
+      case 0:
+        types[i][j] = 1;
+        break;
+      case 1:
+        types[i][j] = 2;
+        break;
+      default:
+        types[i][j] = 0;
+    }
+  }
+}
+
 var express = require('express'),
   app = express(),
   server = require('http').createServer(app),
@@ -26,6 +43,9 @@ io.sockets.on('connection', function(socket) {
     zeit: new Date(),
     name: "_server_",
     text: 'You are connected to the server!'
+  });
+  socket.emit('field', {
+    types: types
   });
   // wenn ein Benutzer einen Text senden
   socket.on('chat', function(data) {

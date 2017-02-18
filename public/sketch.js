@@ -1,6 +1,6 @@
 var cols;
 var rows;
-var field;
+//var field;
 var w = 60;
 var player = 1;
 var player_output;
@@ -46,9 +46,6 @@ function setup() {
   restartbutton.mousePressed(restart);
 
   checkAutorestart = createCheckbox('Autorestart', false);
-
-  field = new Field(rows, cols, w);
-  field.setNeighbors();
 
   frameRate(10);
 }
